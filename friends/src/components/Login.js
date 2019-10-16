@@ -1,49 +1,9 @@
 import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-function Login( postCredentials ){
-    const [ userName, setUserName ] = useState("");
-    const [ password, setPassword ] = useState("");
-
-    const handleName = event => {
-        setUserName(event.target.value);
-    };
-    const handlePassword = event => {
-        setPassword(event.target.value);
-    };
-    const handleSubmit = event => {
-        event.preventDefault();
-        const credentials = {
-            userName: userName,
-            password: password
-        };
-        postCredentials(credentials)
-    };
-
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-
-                <input
-                    userName="userName"
-                    placeholder="User Name"
-                    onChange={handleName}
-                    value={userName}
-                />
-                <input
-                    password="password"
-                    placeholder="Password"
-                    onChange={handlePassword}
-                    value={password}
-                />
-                <button>Login</button>
-
-            </form>
-        </div>
-    )
-}
-
-export default Login;
-
+const Login = props => {
+    const [ credentials, setCredentials ] = useState({ username: '', password: ''})
+    //CLASS COMPONENT
 // class Login extends React.Component {
 //   state = {
 //     credentials: {
@@ -51,51 +11,70 @@ export default Login;
 //       password: ''
 //     }
 //   };
-// i
-//   handleChange = e => {
-//     this.setState({
-//       credentials: {
-//         ...this.state.credentials,
-//         [e.target.name]: e.target.value
-//       }
-//     });
-//   };
 
-//   login = e => {
-//     e.preventDefault();
-//     // login to retrieve the JWT token
-//     // add the token to localstorage
-//     // route to /protected (whatever landing page)
-//     axiosWithAuth()
-//       .post('/api/login', this.state.credentials)
-//       .then(res => {
-//         localStorage.setItem('token', res.data.payload);
-//         this.props.history.push('/protected');
-//       })
-//       .catch(err => console.log(err.response));
-//   };
+    const handleChange = event => {
+        setCredentials(
+            {
+                ...credentials,
+                [event.target.name]: event.target.value
+            }
+        )
+    }
+        //CLASS COMPONENT
+    // handleChange = e => {
+    //     this.setState({
+    //       credentials: {
+    //         ...this.state.credentials,
+    //         [e.target.name]: e.target.value
+    //       }
+    //     });
+    //   };
 
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={this.login}>
-//           <input
-//             type="text"
-//             name="username"
-//             value={this.state.credentials.username}
-//             onChange={this.handleChange}
-//           />
-//           <input
-//             type="password"
-//             name="password"
-//             value={this.state.credentials.password}
-//             onChange={this.handleChange}
-//           />
-//           <button>Log in</button>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
+    const onSubmit = event => {
+        event.preventDefault();
+        axiosWithAuth()
+        .post('/api/login', credentials)
+        .then(response => {
+            localStorage.setItem('token', response.data.payload)
+            props.history.push('/friends')
+        })
+        .catch(error => {
+            console.log(error.response)
+            setCredentials({ username: "", password: ""})
+        })
+    }
+        //CLASS COMPONENT
+    // login = e => {
+    //     e.preventDefault();
+    //     axiosWithAuth()
+    //       .post('/api/login', this.state.credentials)
+    //       .then(res => {
+    //         localStorage.setItem('token', res.data.payload);
+    //         this.props.history.push('/protected');
+    //       })
+    //       .catch(err => console.log(err.response));
+    //   };
 
-// export default Login;
+    return(
+        <div>
+            <form onSubmit={onSubmit}>
+                <input 
+                    type="text" 
+                    name="username" 
+                    value={credentials.username}
+                    onChange={handleChange}
+                />
+                <input 
+                    type="password" 
+                    name="password" 
+                    value={credentials.password}
+                    onChange={handleChange}
+                />
+                <button>Login</button>
+            </form>
+        </div>
+    );
+};
+
+export default Login;
+

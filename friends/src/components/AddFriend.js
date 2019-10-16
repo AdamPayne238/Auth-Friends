@@ -37,12 +37,24 @@ const AddFriend = (props) => {
             axiosWithAuth().put(`/api/friends/${props.editingFriend.id}`, newFriend)
             .then(response => {
                 console.log("Put Response", response)
+                //Renders on change instead of refresh
+                props.setFriends(response.data)
+                setNewFriend(
+                    {
+                        ...newFriend,
+                        name: "",
+                        age: "",
+                        email: ""
+                    } 
+                );
             })
         } else {
         axiosWithAuth()
         .post("/api/friends", newFriend)
         .then(response => {
             console.log("Post Response", response)
+            //Renders on change instead of refresh
+            props.setFriends(response.data)
             setNewFriend(
                 {
                     ...newFriend,

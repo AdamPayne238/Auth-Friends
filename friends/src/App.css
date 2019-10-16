@@ -5,16 +5,36 @@
   text-align: center;
 }
 
+h1{
+  font-size: 4rem;
+}
 .friends{
+  padding: 0;
   border-radius: 20px;
-  background-image: linear-gradient(to right, black , white);
-
-  
-  height: 22rem;
+  background-image: linear-gradient(to right, black , #FFFFFF);
+  height: 30rem;
   width: 100%;
   
 
+
 }
+
+button{
+  height: 50px;
+  width: 140px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background: black;
+  color: white;
+font-size: 20px;
+transition-duration: 450ms;
+}
+button:hover{
+  background: white;
+  color: black;
+}
+
+
 
 
 p{
@@ -24,6 +44,7 @@ p{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 .App-logo {
   height: 40vmin;

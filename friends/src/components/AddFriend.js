@@ -1,6 +1,24 @@
 import React, { useState } from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth.js";
 //
+import styled from "styled-components";
+
+const StyledForm = styled.div`
+display: flex;
+flex-direction: column;
+`;
+
+const StyledInput = styled.input`
+height: 3rem;
+width: 20rem;
+font-size: 2rem;
+margin: 20px;
+border: 2px solid black;
+padding: 5px;
+border-radius: 8px;
+`;
+
+
 const AddFriend = () => {
     const [ newFriend, setNewFriend ] = useState({name: "", age: "", email: ""})
 
@@ -34,32 +52,41 @@ const AddFriend = () => {
     };
 
     return(
-        <div>
+        
+        <StyledForm>
+            <h2>Add New Friend</h2>
             <form onSubmit={onSubmit}>
-                <input 
+                <div>
+                    {/* inputs * 3 */}
+                <StyledInput 
                     type="text"
                     name="name"
                     value={newFriend.name}
                     placeholder="New Name"
                     onChange={handleChange}
                 />
-                <input 
+                </div>
+                <div>
+                <StyledInput 
                     type="text"
                     name="age"
                     value={newFriend.age}
                     placeholder="New Age"
                     onChange={handleChange}
                 />
-                <input 
+                </div>
+                <div>
+                <StyledInput 
                     type="text"
                     name="email"
                     value={newFriend.email}
                     placeholder="New Email"
                     onChange={handleChange}
                 />
-                <button onClick={handleChange}>Add New Friend</button>
+                </div>
+                <button onClick={handleChange}>Add Friend</button>
             </form>
-        </div>
+        </StyledForm>
     )
 }
 

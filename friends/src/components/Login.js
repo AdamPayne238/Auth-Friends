@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+import styled from "styled-components";
+
 const Login = props => {
     const [ credentials, setCredentials ] = useState({ username: '', password: '' })
     //CLASS COMPONENT
@@ -57,25 +59,48 @@ const Login = props => {
     //   };
 
     return(
-        <div>
+        <StyledForm>
             <form onSubmit={onSubmit}>
-                <input 
+                <div>
+                <StyledInput 
                     type="text" 
                     name="username" 
+                    placeholder="User Name"
                     value={credentials.username}
                     onChange={handleChange}
                 />
-                <input 
+                </div>
+                <div>
+                <StyledInput 
                     type="password" 
                     name="password" 
+                    placeholder="Password"
                     value={credentials.password}
                     onChange={handleChange}
                 />
+                </div>
                 <button>Login</button>
             </form>
-        </div>
+        </StyledForm>
     );
 };
 
 export default Login;
+
+
+
+const StyledForm = styled.div`
+display: flex;
+flex-direction: column;
+`;
+
+const StyledInput = styled.input`
+height: 3rem;
+width: 20rem;
+font-size: 2rem;
+margin: 20px;
+border: 2px solid black;
+padding: 5px;
+border-radius: 8px;
+`;
 

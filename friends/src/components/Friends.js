@@ -5,11 +5,6 @@ import AddFriend from "./AddFriend";
 
 import styled from "styled-components";
 
-const StyledFriends = styled.div`
-width: 45%;
-margin: auto;
-`;
-
 const Friends = () => {
     const [ friends, setFriends ] = useState([])
 
@@ -25,6 +20,17 @@ const Friends = () => {
         })
     }, [])
 
+    //Delete is a filter that hooks onto the ID of an item
+    //pass id into the function
+    //add parenthesis to onlick so that you can pass ID into the button as well
+    const deleteFriend = id => {
+        axiosWithAuth()
+        .delete(`/api/friends/${id}`)
+        .then(response => {
+            console.log("Delete Response", response)
+        })
+    }
+
     return(
         <div>
             <AddFriend />
@@ -34,6 +40,8 @@ const Friends = () => {
                             <p>{friendObj.name}</p>
                             <p>{friendObj.age}</p>
                             <p>{friendObj.email}</p>
+                            <button>Edit</button>
+                            <button onClick={() => deleteFriend(friendObj.id)}>Delete</button>
                         </StyledFriends>
              })}
         </div>
@@ -41,3 +49,14 @@ const Friends = () => {
 }
 
 export default Friends;
+
+const StyledFriends = styled.div`
+line-height: 80px;
+width: 600px;
+margin: 40px;
+margin: auto;
+&:hover{
+    background-image: linear-gradient(to right, #FFFFFF , black);
+  }
+}
+`;

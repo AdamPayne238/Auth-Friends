@@ -45,14 +45,14 @@ const AddFriend = () => {
                 />
                 <input 
                     type="text"
-                    age="age"
+                    name="age"
                     value={newFriend.age}
                     placeholder="New Age"
                     onChange={handleChange}
                 />
                 <input 
                     type="text"
-                    email="email"
+                    name="email"
                     value={newFriend.email}
                     placeholder="New Email"
                     onChange={handleChange}

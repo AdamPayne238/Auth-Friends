@@ -11,18 +11,22 @@ function App() {
     <Router>
       <div className="App">
 
+      <div>
         <nav>
           <Link to="/login">Login</Link>
           <Link to="/friends">Friends</Link>
         </nav>
+      </div>
 
+      <div>
         <Switch>
-
+       
           <PrivateRoute exact path="/friends" component={Friends} />
           <Route path="/login" component={Login} />
           <Route component={Login} />
-          
+      
         </Switch>
+        </div>
       </div>
     </Router>
   );

@@ -3,6 +3,13 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import AddFriend from "./AddFriend";
 
+import styled from "styled-components";
+
+const StyledFriends = styled.div`
+width: 45%;
+margin: auto;
+`;
+
 const Friends = () => {
     const [ friends, setFriends ] = useState([])
 
@@ -22,11 +29,12 @@ const Friends = () => {
         <div>
             <AddFriend />
              {friends.map(friendObj => {
-                 return <div key={friendObj.id}>
+                 //StyledFriends is a div
+                 return <StyledFriends className="friends" key={friendObj.id}>
                             <p>{friendObj.name}</p>
                             <p>{friendObj.age}</p>
                             <p>{friendObj.email}</p>
-                        </div>
+                        </StyledFriends>
              })}
         </div>
     )

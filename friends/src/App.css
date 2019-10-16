@@ -1,5 +1,28 @@
 .App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
+}
+
+.friends{
+  border-radius: 20px;
+  background-image: linear-gradient(to right, black , white);
+
+  
+  height: 22rem;
+  width: 100%;
+  
+
+}
+
+
+p{
+  text-shadow: 2px 2px black;
+  font-size: 3rem;
+  background: -webkit-linear-gradient(white, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .App-logo {

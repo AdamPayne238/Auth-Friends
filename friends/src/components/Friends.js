@@ -5,8 +5,10 @@ import AddFriend from "./AddFriend";
 
 import styled from "styled-components";
 
-const Friends = () => {
-    const [ friends, setFriends ] = useState([])
+
+export const Friends = () => {
+   const [ friends, setFriends ] = useState([])
+    const [ editingFriend, setEditingFriend ] = useState()
 
     useEffect(() => {
         axiosWithAuth()
@@ -28,19 +30,34 @@ const Friends = () => {
         .delete(`/api/friends/${id}`)
         .then(response => {
             console.log("Delete Response", response)
+            //Updates rendered data to show that friend was deleted
+            //Try on add!
+            setFriends(response.data);
         })
+    }
+
+    //New State to hold onto just one friend to edit
+   
+
+    const editFriend = friendObj => {
+        setEditingFriend(friendObj);
     }
 
     return(
         <div>
-            <AddFriend />
+            <AddFriend 
+            //pass setFriends to AddFriend component
+            setFriends={setFriends}
+            //pass editingFriend to AddFriend component
+            editingFriend={editingFriend} 
+            />
              {friends.map(friendObj => {
                  //StyledFriends is a div
                  return <StyledFriends className="friends" key={friendObj.id}>
                             <p>{friendObj.name}</p>
                             <p>{friendObj.age}</p>
                             <p>{friendObj.email}</p>
-                            <button>Edit</button>
+                            <button onClick={() => editFriend(friendObj)}>Edit</button>
                             <button onClick={() => deleteFriend(friendObj.id)}>Delete</button>
                         </StyledFriends>
              })}

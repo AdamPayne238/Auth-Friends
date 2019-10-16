@@ -27,7 +27,7 @@ function App() {
     <Router>
       <div className="App">
 
-      <h1>Private Friend Group</h1>
+      <h1>Private Friend</h1>
 
       <div>
         {/* Nav */}

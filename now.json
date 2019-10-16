@@ -1,8 +1,8 @@
 {
     "version": 2,
-    "name": "project-name",
-    "builds": [{ "src": "project-name/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
+    "name": "Auth-Friends",
+    "builds": [{ "src": "Auth-Friends/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
     "routes": [
-        { "src": "/(.*)", "dest": "project-name/$1" }
+        { "src": "/(.*)", "dest": "Auth-Friends/$1" }
     ]
 }

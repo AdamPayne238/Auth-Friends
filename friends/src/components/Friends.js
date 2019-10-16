@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+import AddFriend from "./AddFriend";
+
 const Friends = () => {
     const [ friends, setFriends ] = useState([])
 
     useEffect(() => {
         axiosWithAuth()
         .get("/api/friends")
-        .then(response => setFriends(response.data))
-        .catch(error => console.log(console.log("Get Error", error), error))
+        .then(response => {
+            console.log("Get Response", response.data)
+            setFriends(response.data)
+        })
+        .catch(error => {
+             console.log("Get Error", error)
+        })
     }, [])
 
     return(
         <div>
+            <AddFriend />
              {friends.map(friendObj => {
                  return <div key={friendObj.id}>
                             <p>{friendObj.name}</p>
@@ -25,29 +33,3 @@ const Friends = () => {
 }
 
 export default Friends;
-
-// const MyFriends = () => {
-//   const [friends, setFriends] = useState([])
-
-//   useEffect(() => {
-//     axiosWithAuth()
-//     .get("/friends")
-//     .then(res => setFriends(res.data))
-//     .catch(err => console.error(err))
-//   })
-
-//   return(
-//     <>
-//       <AddFriend />
-//       <h1>MY FRIENDS!</h1>
-//       {friends.map(friend => (
-//         <div key={friend.id}>
-//           <Friend banana={friend} />
-//         </div>
-//       ))}
-//     </>
-//   )
-
-// }
-
-// export default MyFriends; 

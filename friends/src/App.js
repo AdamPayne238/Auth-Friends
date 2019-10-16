@@ -10,15 +10,18 @@ function App() {
   return (
     <Router>
       <div className="App">
+
         <nav>
           <Link to="/login">Login</Link>
-        
           <Link to="/friends">Friends</Link>
-          </nav>
+        </nav>
+
         <Switch>
+
           <PrivateRoute exact path="/friends" component={Friends} />
           <Route path="/login" component={Login} />
           <Route component={Login} />
+          
         </Switch>
       </div>
     </Router>

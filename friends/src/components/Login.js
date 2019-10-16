@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Login = props => {
-    const [ credentials, setCredentials ] = useState({ username: '', password: ''})
+    const [ credentials, setCredentials ] = useState({ username: '', password: '' })
     //CLASS COMPONENT
 // class Login extends React.Component {
 //   state = {
@@ -35,11 +35,12 @@ const Login = props => {
         axiosWithAuth()
         .post('/api/login', credentials)
         .then(response => {
+            console.log("Post Response", response)
             localStorage.setItem('token', response.data.payload)
             props.history.push('/friends')
         })
         .catch(error => {
-            console.log(error.response)
+            console.log(error)
             setCredentials({ username: "", password: ""})
         })
     }

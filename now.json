@@ -1,9 +1,9 @@
 {
     "version": 2,
-    "name": "Auth-Friends",
-    "builds": [{ "src": "Auth-Friends/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
+    "name": "friends",
+    "builds": [{ "src": "friends/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
     "routes": [
-        { "src": "/(.*)", "dest": "Auth-Friends/$1" }
+        { "src": "/(.*)", "dest": "friends/$1" }
     ]
 }
 

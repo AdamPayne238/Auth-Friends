@@ -1,0 +1,66 @@
+.App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1{
+  font-size: 4rem;
+}
+.friends{
+  padding: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, black , #FFFFFF);
+  height: 30rem;
+  width: 100%;
+  
+
+
+}
+
+button{
+  height: 50px;
+  width: 140px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background: black;
+  color: white;
+font-size: 20px;
+transition-duration: 450ms;
+}
+button:hover{
+  background: white;
+  color: black;
+}
+
+
+
+
+p{
+  text-shadow: 2px 2px black;
+  font-size: 3rem;
+  background: -webkit-linear-gradient(white, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
